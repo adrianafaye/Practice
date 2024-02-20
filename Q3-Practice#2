@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adi’s Message Encryptor</title>
+</head>
+<body>
+    <h2>Adi’s Message Encryptor</h2>
+    <input type="text" id="messageInput" placeholder = Enter>
+    <button onclick="encryptMessage()">Encrypt</button>
+    <p id = “encryptedMessage"></p>
+
+    <script>
+        function encryptMessage(){
+            const messageInput = document.getElementById('messageInput').value.toUpperCase();
+            const encryptedMessage = encrypt(messageInput);
+            document.getElementById('encryptedMessage').innerHTML = `Encrypted Message: ${encryptedMessage}`;
+        }
+
+        function encrypt(message){
+            const mapping = {
+                'A': '4', '4': 'A',
+                'E': '3', '3': 'E',
+                'I': '1', '1': 'I',
+                'O': '0', '0': 'O',
+                'G': '6', '6': 'G',
+                'L': '7', '7': 'L',
+                'B': '8', '8': 'B'
+            };
+
+            let encryptedMessage = '';
+            for (let i = 0; i < message.length; i++){
+                const char = message[i];
+                encryptedMessage += mapping[char] || char;
+            }
+            return encryptedMessage;
+        }
+    </script>
+</body>
+</html>
